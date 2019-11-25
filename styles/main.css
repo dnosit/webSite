@@ -1,0 +1,211 @@
+/*      UNIVERSAL    */ 
+* {
+    font-family: Muli, Arial, Helvetica, sans-serif; 
+    border-radius: 2em; 
+}
+
+body {
+    background-color: whitesmoke; 
+    display: flex; 
+    flex-direction: column;
+} 
+
+h1, h2 { 
+    padding-top: 1em; 
+    padding-bottom: 0.3em; 
+}
+
+h1, h2, h3 {
+    text-align: center; 
+    text-transform: uppercase; 
+}
+
+h4 {
+    text-align: center; 
+}
+
+main {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+}
+
+article {
+    background-color: rgba(255, 184, 0, 0.15);
+    padding: 10px;
+    margin-top: 1em; 
+}
+
+.email-address {
+    text-transform: lowercase; 
+}
+
+
+
+/*      HEADER ELEMENTS       */ 
+header {
+    color: rgb(65,105,225); 
+    justify-content: center; 
+}
+
+#profile-image {
+    filter: drop-shadow(5px 8px 10px gray);
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 2em; 
+} 
+
+#main-heading { 
+    color: rgb(0, 54, 108); 
+    text-shadow: 0px 1px 2px rgba(255, 184, 0, 0.8);
+} 
+
+#main-tag-line { 
+    padding-bottom: 5%; 
+}
+
+
+
+
+
+/*      NAVIGATION       */
+nav ul {
+    width: 90%; 
+    height: auto; 
+    list-style-type: none; 
+    background-color: whitesmoke; 
+    padding: 2px; 
+    display: block; 
+    margin: 0 auto; 
+}
+
+/*     HOME PAGE QUOTE BLOCK        */ 
+
+#main-quote {
+    max-width: 18em; 
+    padding: 1.5em; 
+    background-color: whitesmoke; 
+    display: block; 
+    margin: 0 auto; 
+    font-size: 1.5em; 
+}
+#main-quote p:first-child, #main-quote p:last-child {
+    color: royalblue; 
+}
+
+
+
+
+
+/*      VERTICAL SECTIONS ALL        */ 
+.projects-main-title { 
+    margin-top: 0em;
+    margin-bottom: 2em; 
+}
+
+.section-sub-title {
+    background-color: rgba(65,105,225, 0.5); 
+    margin-top: 2em; 
+}
+
+.section-content { 
+    max-width: 62em;
+}
+
+
+
+/*      PROJECTS SECTION        */ 
+.projects-sub-section {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 0.5%; 
+    display: block; 
+    margin: 0 auto; 
+}
+.projects-sub-section article {
+    height: 20em;
+    max-width: 25em;
+    display: flex; 
+    flex-direction: column; 
+}
+iframe {
+    width: 100%;
+    height: 12em;
+}
+
+
+
+
+/* FOOTER */ 
+footer {
+    text-align: center; 
+    padding-top: 2.5em; 
+}
+
+
+
+
+/*  ----- LINKS -----   */
+a:link,
+a:visited {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 4px rgb(255,255,255);
+}
+
+a:hover,
+a:active {
+    color: royalblue;
+    text-shadow: 1px 1px 4px rgb(0,0,0);
+}
+
+
+
+/*  -----  ANIMATIONS  -----  */
+/* Main Menu */ 
+.current {
+    animation-name: current-nav-pulse; 
+    animation-duration: 2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards; 
+    animation-delay: 0.2s;
+}
+@keyframes current-nav-pulse {
+    0% {color: rgba(0, 54, 108, 0.2);}
+    50% {color: rgba(0, 54, 108, 1);
+        text-shadow: 1px 1px 4px royalblue;}
+    100% {color: rgba(0, 54, 108, 0.2);}
+}
+
+
+
+
+/*  -----  RESPONSIVE DISPLAY -----  */
+
+@media only screen and (min-width: 45em) {
+    nav {
+        width: 100%; 
+    }
+    nav ul {
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-evenly; 
+    }
+    .projects-sub-section {
+        display: flex; 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+    }
+    .projects-sub-section article {
+        margin: 0.5em;
+        width: 18em;
+    }
+    iframe { 
+        max-width: 18em;
+    }
+    .contact-section {
+        width: 50%; 
+    }
+} 
