@@ -129,12 +129,25 @@ nav ul {
     display: flex; 
     flex-direction: column; 
 }
+.projects-sub-section article p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
 iframe {
     width: 100%;
     height: 12em;
 }
-
-
+/* PROJECTS INDIVIDUAL */ 
+/* Snake Game */
+#snake {
+    /*Note the image location relative to css file*/
+    background: url('../images/snake.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}   
 
 
 /* FOOTER */ 
