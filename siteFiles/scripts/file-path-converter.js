@@ -24,67 +24,67 @@ function onclick(event) {
 // https://www.the-art-of-web.com/javascript/escape/
 
 
+// Windows --> Linux file path
 function convertPathWindows(path) {
+    // skip over the special char from string 
+
     
+    // Add drive mount to start of file path 
+    if (i<=1 && path.charAt(0) == "C") {
+        // internal drive
+        // example linux and windows equivalent: /  and  C:\
+        // change only first two chars C & :
+        let newChar = ""; 
+    }
+    else {
+        // external drive
+        // example linux and windows equivalent: /mnt/d/  and  D:\
+        // add mount 
+        let newPath += "mnt%2F";
+        // change case of drive letter and add
+        newPath += currenChar.toLowerCase(); 
+    }
+    // Add the rest of the chars 
+    if (currentChar =="%" && path.charAt(i+1) =="5" && path.charAt(i+2) == "C") {  // current char is \
+        newChar = '%2F'; // change to /
+        // skip over the special char from string 
+        i += 3; 
+    }
+    // otherwise keep char same
+    else {
+        newChar = currentChar;
+    }
+}
+
+
+// Linux --> Windows file path
+function convertPathLinux(path) {
+    let newPath = "";
+    // swap the slashes (back/forward) 
+    if (currentChar =="/") {
+        newPath += '\\';
+    }
+    // otherwise keep char same
+    else {
+        newPath += currentChar;
+    }
+    return newPath; 
 }
 
 
 // Convert the file path
 function convertPaths(path) {
-    // convert each slash in path
-    for(i=0;path.Length;i++) {
-        currentChar = path.charAt(i); 
-        newChar = ""; 
-        newPath = "";
-        // Windows --> Linux file path
-        if (path.charAt(1) == "%" && path.charAt(2) == "3" && path.charAt(3) == "A" ) { // for ":" 
-            // skip over the special char from string 
-            i += 3; 
-            // Add drive mount to start of file path 
-            if (i<=1 && path.charAt(0) == "C") {
-                // internal drive
-                // example linux and windows equivalent: /  and  C:\
-                // change only first two chars C & :
-                newChar = ""; 
-            }
-            else {
-                // external drive
-                // example linux and windows equivalent: /mnt/d/  and  D:\
-                // add mount 
-                newPath += "mnt%2F";
-                // change case of drive letter and add
-                newPath += currenChar.toLowerCase(); 
-            }
-            // Add the rest of the chars 
-            if (currentChar =="%" && path.charAt(i+1) =="5" && path.charAt(i+2) == "C") {  // current char is \
-                newChar = '%2F'; // change to /
-                // skip over the special char from string 
-                i += 3; 
-            }
-            // otherwise keep char same
-            else {
-                newChar = currentChar;
-            }
-        }
-
-
-        // Linux --> Windows file path
-        else { 
-            // swap the slashes (back/forward) 
-            if (currentChar =="/") {
-                newChar = '\\';
-            }
-            // otherwise keep char same
-            else {
-                newChar = currentChar;
-            }
-        }
-        // add current char to new path
-        newPath += newChar; 
+    let newPath = ""
+    // Windows --> Linux file path
+    if (path.charAt(1) == "%" && path.charAt(2) == "3" && path.charAt(3) == "A" ) { // %3A == ":" 
+        newPath = convertPathWindows(path)
+    }
+    // Linux --> Windows file path
+    else {
+        newPath = convertPathLinux(path)
     }
     return newPath; 
 }
-
 
 // 
 // TEMP 
