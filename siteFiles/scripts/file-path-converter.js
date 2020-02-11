@@ -2,7 +2,7 @@
 // var exampleWin = "C:\Dan\Arc\Teach\Other\APCSSci\2015\Resoucres\Yr7\"
 // escaped/encoded using encodeURIComponent() below 
 // path = "C%3A%5CDan%5CArc%5CTeach%5COther%5CAPCSSci%5C2015%5CResoucres%5CYr7%5C"
-// forward slash encoding = %2F 
+// "/" = %2F 
 // var exampleLinux = "/Dan/Arc/Teach/Other/APCSSci/2015/Resoucres/Yr7/" 
 
 // Copy input from user
@@ -26,34 +26,30 @@ function onclick(event) {
 
 // Windows --> Linux file path
 function convertPathWindows(path) {
-    // skip over the special char from string 
-
-    
-    // Add drive mount to start of file path 
+    let newPath = "%2F "; // first forward slash
+    // Add respective drive mount to start of file path 
+    // INTERNAL DRIVE - eg linux and windows equivalent: /  and  C:\
     if (i<=1 && path.charAt(0) == "C") {
-        // internal drive
-        // example linux and windows equivalent: /  and  C:\
-        // change only first two chars C & :
-        let newChar = ""; 
+        newChar = "";
     }
-    else {
-        // external drive
-        // example linux and windows equivalent: /mnt/d/  and  D:\
-        // add mount 
-        let newPath += "mnt%2F";
+    else { // EXTERNAL DRIVE -eg linux and windows equivalent: /mnt/d/  and  D:\  
+        // add mount    NB: "/" = %2F 
+        newPath += "mnt%2F"; 
         // change case of drive letter and add
         newPath += currenChar.toLowerCase(); 
     }
-    // Add the rest of the chars 
-    if (currentChar =="%" && path.charAt(i+1) =="5" && path.charAt(i+2) == "C") {  // current char is \
-        newChar = '%2F'; // change to /
-        // skip over the special char from string 
-        i += 3; 
+    for (i=2;length(path);i++) {
+        // otherwise keep char same
+        if (currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C") {
+            // normal char - simply add
+            newChar = currentChar;
+        }
+        // Add the rest of the chars 
+        else  {  // current char is \
+            newChar = '%2F'; // change to /
+        }
     }
-    // otherwise keep char same
-    else {
-        newChar = currentChar;
-    }
+    return newPath; 
 }
 
 
