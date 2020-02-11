@@ -39,18 +39,21 @@ function convertPathWindows(path) {
         // change case of drive letter and add
         newPath += currenChar.toLowerCase(); 
     } 
+    let skipCharsCounter = 0;
     for (i=2;i<path.length;i++) {
         currentChar = path.charAt(i);
         // if not backslash char
-        if ((currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C") || 
-        (currentChar != "5" && path.charAt(i+1) !="C" && path.charAt(i-1) != "%")     ||
-        (currentChar != "C" && path.charAt(i-2) !="%" && path.charAt(i-1) != "5")   ) {
+        if (currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C") {
             // normal char - simply add
             newPath += currentChar;
         }
         // Add slash only once for each of "%5C"
-        else if (currentChar == "%") {  
+        else if (skipCharsCounter > 0) {  
             newPath += fwdSlash; 
+            skipCharsCounter -= 1; 
+        }
+        else { 
+            skipCharsCounter = 3; 
         }
     }
     return newPath; 
