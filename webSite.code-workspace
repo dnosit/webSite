@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.wrappingIndent": "none",
+		"debug.console.wordWrap": false,
+		"html.format.wrapAttributes": "preserve",
+		"html.format.wrapLineLength": 0
+	}
 }

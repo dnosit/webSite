@@ -2,34 +2,23 @@
 // var exampleWin = "C:\Dan\Arc\Teach\Other\APCSSci\2015\Resoucres\Yr7\"
 // escaped/encoded using encodeURIComponent() below 
 // path = "C%3A%5CDan%5CArc%5CTeach%5COther%5CAPCSSci%5C2015%5CResoucres%5CYr7%5C"
-// "/" = %2F 
 // var exampleLinux = "/Dan/Arc/Teach/Other/APCSSci/2015/Resoucres/Yr7/" 
+// escaped/encoded using encodeURIComponent() below 
+// path = "%2FDan%2FArc%2FTeach%2FOther%2FAPCSSci%2F2015%2FResoucres%2FYr7%2F"
+// Resources & useful things on the topic: 
+// https://www.the-art-of-web.com/javascript/escape/
+
 
 // ------------ VARS ----------------
 const fwdSlash = "%2F"; 
 const backSlash = "%5C"; 
 
-/*
-// Copy input from user
-function copyInput() {
-    var copyText = document.querySelector("#pathInput");
-    // encode to change slashes to hex codes 
-    encodeURIComponent(copyText.select());
-    document.execCommand("copy");
-  }
-document.querySelector("#copy").addEventListener("click", copy);
-
-
-
-// input data encoded with encodeURIComponent 
-function onclick(event) {
-    output3.value = encodeURIComponent(input.value);
-  }
-
-// https://www.the-art-of-web.com/javascript/escape/
-*/
-
-path = "D%3A%5CDan%5CArc%5CTeach%5COther%5CAPCSSci%5C2015%5CResoucres%5CYr7%5C"
+// Get entry on click 
+function getInputEncoded() {
+    // Also encodes URI component 
+    let filePathInput = encodeURIComponent(document.getElementById('textInput').value);
+    return filePathInput; 
+}
 
 // Windows --> Linux file path
 function convertPathWindows(path) {
@@ -42,7 +31,7 @@ function convertPathWindows(path) {
         newPath += path.charAt(0).toLowerCase(); 
     }
     let skipCharsCounter = 0;
-    for (i=4;i<path.length;i++) {
+    for (i=4;i<path.length;i++) { // loop starts after Drive letter and %3A = ":" 
         currentChar = path.charAt(i);
         // if not backslash char
         if (currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C" && skipCharsCounter == 0) {
@@ -79,7 +68,12 @@ function convertPathLinux(path) {
 
 
 // Convert the file path
-function convertPaths(path) {
+function convertPath() {
+    let path = getInputEncoded();
+
+    // Temp 
+    console.log("The file path input, encoded is:\n" + path);
+
     let newPath = ""
     // Windows --> Linux file path
     if (path.charAt(1) == "%" && path.charAt(2) == "3" && path.charAt(3) == "A" ) { // %3A == ":" 
@@ -89,13 +83,30 @@ function convertPaths(path) {
     else {
         newPath = convertPathLinux(path);
     }
-    return newPath; 
+
+    // Temp 
+    console.log(decodeURIComponent("The file path output is:\n" + newPath));
+
+    // var x = document.createElement("OUTPUT");
+    // document.getElementById("OUTPUT").value = newPath; 
+    document.getElementById("textOutput").value = decodeURIComponent(newPath); 
 }
 
-// 
-// TEMP 
-console.log(decodeURIComponent(convertPaths(path)));
-// 
+
+// copyPath
+
+
+// check for button click to convert 
+document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('buttonInput').addEventListener('click', convertPath);
+});
+
+/*
+// check for button click to copy text
+document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('buttonOutput').addEventListener('click', copyPath);
+});
+*/ 
 
 
 

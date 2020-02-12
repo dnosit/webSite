@@ -4,7 +4,7 @@
     <title> Dan Nehl | File Path Converter </title>
     <meta charset="utf-8"/>
     <meta name="description" content="File Path Converter Web App">
-<    <meta name="keywords" content="Work, File Path Converter, Convert file path, Windows to linux file path, Linux to windows file path">
+    <meta name="keywords" content="Work, File Path Converter, Convert file path, Windows to linux file path, Linux to windows file path">
     <meta name="author" content="Daniel Nehl">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/main.css" >
@@ -17,18 +17,24 @@
         <h2> Convert file paths between Windows &amp; Linux</h2> 
     </header> 
     <main> 
-        <div class="input">
-            <!--button to paste text -->
-            <h3><button id="copyInput">Paste Path Here</button></h3>
-            <!-- Text input field -->
-            <h3><input id="pathInput" type="text"/></h3>
-        </div>
-        <div class="output">
-            <!--button to copy text -->
-            <h3><button onclick="getFilePath()">Copy Converted Path</button></h3>
-            <!-- Text output field -->
-            <h3><input type="text" value="filePath" id="filePathOutput"></h3>
-        </div> 
+        <form> 
+            <div class="input">
+                <button id="buttonInput">Convert!</button>
+                <input id="textInput" type="text" placeholder="Paste input here" value=""></input>
+            </div>
+            <div class="output">   
+                <button onclick="copyPath">Copy Converted Path</button>
+                <input id="textOutput" type="text" placeholder="Converted Path Here..." value=""></input>
+            </div>
+            
+<!-- 
+            <div class="output">
+                <button onclick="getFilePath">Copy Converted Path</button>
+                
+                <input id="pathOutput" type="text" ></input>
+            </div> 
+--> 
+        </form> 
     </main>
     <footer> 
         <div>
