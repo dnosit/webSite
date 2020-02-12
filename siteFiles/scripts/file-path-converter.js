@@ -13,20 +13,15 @@
 const fwdSlash = "%2F"; 
 const backSlash = "%5C"; 
 
-// Get entry on click 
-function getInputEncoded() {
-    // Also encodes URI component 
-    let filePathInput = encodeURIComponent(document.getElementById('textInput').value);
-    return filePathInput; 
-}
+
 
 // Windows --> Linux file path
 function convertPathWindows(path) {
     let newPath = ""; 
     // add mount if needed (otherwise just forward slash on linux)
     if (path.charAt(0) != "C") {
-        // EXTERNAL DRIVE - eg linux & windows equivalent: /mnt/d/  and  D:\ 
-        newPath += fwdSlash + "mnt" + fwdSlash; 
+        // EXTERNAL DRIVE - eg linux & windows equivalent: /mnt/d/  and  D:\
+        newPath += fwdSlash + "mnt"; 
         // change case of drive letter and add
         newPath += path.charAt(0).toLowerCase(); 
     }
@@ -43,7 +38,7 @@ function convertPathWindows(path) {
             skipCharsCounter -= 1; 
         }
         else { 
-            skipCharsCounter = 2; 
+            skipCharsCounter = 2; // 2 more chars after this one
             newPath += fwdSlash; 
         }
     }
@@ -68,8 +63,10 @@ function convertPathLinux(path) {
 
 
 // Convert the file path
-function convertPath() {
-    let path = getInputEncoded();
+function convertPath(event) { // event passed by event listener click
+    event.preventDefault(); // to stop form from submitting
+    // Also encodes URI component 
+    let path = encodeURIComponent(document.getElementById('textInput').value);
 
     // Temp 
     console.log("The file path input, encoded is:\n" + path);
@@ -90,6 +87,9 @@ function convertPath() {
     // var x = document.createElement("OUTPUT");
     // document.getElementById("OUTPUT").value = newPath; 
     document.getElementById("textOutput").value = decodeURIComponent(newPath); 
+
+    document.forms[0].reset();  // clear form for next entry 
+    // document.querySelector('form').reset(); // alternate clear-form method same as above
 }
 
 
@@ -100,6 +100,8 @@ function convertPath() {
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('buttonInput').addEventListener('click', convertPath);
 });
+
+
 
 /*
 // check for button click to copy text
