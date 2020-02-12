@@ -29,31 +29,33 @@ function onclick(event) {
 // https://www.the-art-of-web.com/javascript/escape/
 */
 
+path = "D%3A%5CDan%5CArc%5CTeach%5COther%5CAPCSSci%5C2015%5CResoucres%5CYr7%5C"
+
 // Windows --> Linux file path
 function convertPathWindows(path) {
-    let newPath = fwdSlash; 
+    let newPath = ""; 
     // add mount if needed (otherwise just forward slash on linux)
     if (path.charAt(0) != "C") {
         // EXTERNAL DRIVE - eg linux & windows equivalent: /mnt/d/  and  D:\ 
-        newPath += "mnt" + fwdSlash; 
+        newPath += fwdSlash + "mnt" + fwdSlash; 
         // change case of drive letter and add
-        newPath += currenChar.toLowerCase(); 
-    } 
+        newPath += path.charAt(0).toLowerCase(); 
+    }
     let skipCharsCounter = 0;
-    for (i=2;i<path.length;i++) {
+    for (i=4;i<path.length;i++) {
         currentChar = path.charAt(i);
         // if not backslash char
-        if (currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C") {
+        if (currentChar != "%" && path.charAt(i+1) !="5" && path.charAt(i+2) != "C" && skipCharsCounter == 0) {
             // normal char - simply add
             newPath += currentChar;
         }
         // Add slash only once for each of "%5C"
         else if (skipCharsCounter > 0) {  
-            newPath += fwdSlash; 
             skipCharsCounter -= 1; 
         }
         else { 
-            skipCharsCounter = 3; 
+            skipCharsCounter = 2; 
+            newPath += fwdSlash; 
         }
     }
     return newPath; 
@@ -97,7 +99,7 @@ console.log(decodeURIComponent(convertPaths(path)));
 
 
 
-
+/*
 
 // Display output & allow users copy on click
 function returnFilePath() {
@@ -118,3 +120,5 @@ function main() {
     convertPaths(path)
     returnFilePath()
 }
+
+*/ 
