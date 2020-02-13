@@ -13,8 +13,6 @@
 const fwdSlash = "%2F"; 
 const backSlash = "%5C"; 
 
-
-
 // Windows --> Linux file path
 function convertPathWindows(path) {
     let newPath = ""; 
@@ -65,13 +63,6 @@ function convertPathLinux(path) {
 function outputPath(path) {
     // Update output with converted path
     document.getElementById("textOutput").value = decodeURIComponent(path); 
-    
-    var outputNew = document.getElementById("textOutput").value;
-    console.log("Output var outputPath value: " + outputNew);
-
-    // once user has copied data 
-    // document.forms[0].reset();  // clear form for next entry 
-    // document.querySelector('form').reset(); // alternate clear-form method same as above
 }
 
 
@@ -98,10 +89,6 @@ function convertPath(event) { // event passed by event listener click
     }
 }
 
-function copyPath() {
-
-}
-
 // EVENT LISTENERS 
 // check for button click to convert 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -110,22 +97,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 /*
+// COPY FUNCTIONALITY 
+
+// TO BE ADDED 
+
+function copyPath() {
+
+}
+
+
 // check for button click to copy converted path text
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('buttonOutput').addEventListener('click', copyPath);
 });
-*/
-
-
-
-// HELP, IMPROVEMENTS, FURTHER READING: 
-// https://www.the-art-of-web.com/javascript/escape/
-// https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f 
-// http://www.javascriptkit.com/javatutors/copytoclipboard.shtml 
-// FORM VALIDATION: https://www.w3schools.com/jsref/prop_text_value.asp 
-
-
-/*
 
 // Display output & allow users copy on click
 function returnFilePath() {
@@ -139,5 +123,17 @@ function returnFilePath() {
     // Alert - text copied
     alert("Copied File Path: " + copyText.value);
   } 
+*/
 
-*/ 
+// once user has copied data 
+// document.forms[0].reset();  // clear form for next entry 
+// document.querySelector('form').reset(); // alternate clear-form method same as above
+
+
+
+
+// HELP, IMPROVEMENTS, FURTHER READING: 
+// https://www.the-art-of-web.com/javascript/escape/
+// https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f 
+// http://www.javascriptkit.com/javatutors/copytoclipboard.shtml 
+// FORM VALIDATION: https://www.w3schools.com/jsref/prop_text_value.asp 
