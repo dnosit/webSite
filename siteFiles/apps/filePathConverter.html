@@ -14,21 +14,27 @@
 <body>
     <header class="header"> 
         <h1 id="main-tag-line">File Path Converter</h1>
-        <h2> Convert file paths between Windows &amp; Linux</h2> 
+        <h2> Between Windows &amp; Linux</h2> 
     </header> 
     <main> 
         <form> 
-            <div class="formBox">
+            <fieldset> 
+
+                <input id="textInput" type="text" required placeholder="Paste full file path here"
+                oninvalid="this.setCustomValidity('Please ensure you have entered the path correctly')"
+                oninput="this.setCustomValidity('')">
                 <button id="buttonInput">Convert!</button>
-                <input id="textInput" type="text" placeholder="Paste full file path here">
-            </div>
-<!--
-            <div class="formBox">   
-                <button onclick="copyPath">Copy Converted Path</button>
-                <input id="textOutput" type="text" placeholder="Converted Path Here..."></input>
-            </div>
--->  
+
+                <label for=""> Converts to... </label>
+                <input id="textOutput" type="text" value="Converted Path">
+            </fieldset>
         </form> 
+<!-- 
+        <div>   
+            <button onclick="copyPath">Copy Converted Path</button>
+            <input id="textOutput" type="text" placeholder="Converted Path Here...">
+        </div>
+-->
     </main>
     <footer>
         <div>
@@ -43,5 +49,5 @@
             <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>
         </div> 
     </footer>
-    <script src="../../scripts/file-path-converter.js"></script>
+    <script type = "text/javascript" src="../scripts/file-path-converter.js"></script>
 </body>

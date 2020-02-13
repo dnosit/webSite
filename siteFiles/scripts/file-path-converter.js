@@ -61,55 +61,68 @@ function convertPathLinux(path) {
     return newPath; 
 }
 
+// output new file path
+function outputPath(path) {
+    // Update output with converted path
+    document.getElementById("textOutput").value = decodeURIComponent(path); 
+    
+    var outputNew = document.getElementById("textOutput").value;
+    console.log("Output var outputPath value: " + outputNew);
+
+    // once user has copied data 
+    // document.forms[0].reset();  // clear form for next entry 
+    // document.querySelector('form').reset(); // alternate clear-form method same as above
+}
+
 
 // Convert the file path
 function convertPath(event) { // event passed by event listener click
     event.preventDefault(); // to stop form from submitting
     // Also encodes URI component 
     let path = encodeURIComponent(document.getElementById('textInput').value);
-
-    // Temp 
-    console.log("The file path input, encoded is:\n" + path);
-
     let newPath = ""
     // Windows --> Linux file path
     if (path.charAt(1) == "%" && path.charAt(2) == "3" && path.charAt(3) == "A" ) { // %3A == ":" 
-        newPath = convertPathWindows(path)
+        newPath = convertPathWindows(path);
+        outputPath(newPath); 
     }
     // Linux --> Windows file path
-    else {
+    else if (path.charAt(0) == "%" && path.charAt(1) =="5" && path.charAt(2) == "C") {
         newPath = convertPathLinux(path);
+        outputPath(newPath); 
     }
-
-    // Temp 
-    console.log(decodeURIComponent("The file path output is:\n" + newPath));
-
-    // var x = document.createElement("OUTPUT");
-    // document.getElementById("OUTPUT").value = newPath; 
-    document.getElementById("textOutput").value = decodeURIComponent(newPath); 
-
-    document.forms[0].reset();  // clear form for next entry 
-    // document.querySelector('form').reset(); // alternate clear-form method same as above
+    else {
+        // notify use to please enter a valid, full file path 
+        // error message 
+        console.log("There has been an error.")
+    }
 }
 
+function copyPath() {
 
-// copyPath
+}
 
-
+// EVENT LISTENERS 
 // check for button click to convert 
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('buttonInput').addEventListener('click', convertPath);
 });
 
 
-
 /*
-// check for button click to copy text
+// check for button click to copy converted path text
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('buttonOutput').addEventListener('click', copyPath);
 });
-*/ 
+*/
 
+
+
+// HELP, IMPROVEMENTS, FURTHER READING: 
+// https://www.the-art-of-web.com/javascript/escape/
+// https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f 
+// http://www.javascriptkit.com/javatutors/copytoclipboard.shtml 
+// FORM VALIDATION: https://www.w3schools.com/jsref/prop_text_value.asp 
 
 
 /*
@@ -126,12 +139,5 @@ function returnFilePath() {
     // Alert - text copied
     alert("Copied File Path: " + copyText.value);
   } 
-
-
-function main() {
-    copyInput()
-    convertPaths(path)
-    returnFilePath()
-}
 
 */ 
