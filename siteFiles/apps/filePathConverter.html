@@ -14,28 +14,28 @@
 <body>
     <header class="header"> 
         <h1 id="main-tag-line">File Path Converter</h1>
-        <h2> Between Windows &amp; Linux</h2> 
+        <h2>Windows &#10234; Linux</h2> 
     </header> 
     <main> 
-        <form> 
-            <fieldset> 
-
-                <input id="textInput" type="text" required placeholder="Paste full file path here"
-                oninvalid="this.setCustomValidity('Please ensure you have entered the path correctly')"
-                oninput="this.setCustomValidity('')">
-                <button id="buttonInput">Convert!</button>
-
-                <label for=""> Converts to... </label>
-                <input id="textOutput" type="text" value="Converted Path">
-            </fieldset>
-        </form> 
-<!-- 
-        <div>   
-            <button onclick="copyPath">Copy Converted Path</button>
-            <input id="textOutput" type="text" placeholder="Converted Path Here...">
-        </div>
--->
-    </main>
+        <article> 
+            <form> 
+                <fieldset> 
+                    <input id="textInput" type="text" required placeholder="Either full file path here"
+                    oninvalid="this.setCustomValidity('Please ensure you have entered the path correctly')"
+                    oninput="this.setCustomValidity('')">
+                    <button id="buttonInput">Convert!</button>
+                    <!-- Output below -->
+                    <label for="">  Converts to... </label>
+                    <input id="textOutput" type="text" value="Converted Path">
+                </fieldset>
+            </form> 
+        </article>
+    </main>  
+    <aside>
+        <div>
+            <p>Note: Some paths may convert incorrectly, possibly due to encoding/decoding reading some characters as a set. This was more difficult to write in JS than I predicted, due to the nature of JS security issues.</p>
+        </div> 
+    </aside> 
     <footer>
         <div>
             <h2><a href="../work.html">Back to Work</a></h2>

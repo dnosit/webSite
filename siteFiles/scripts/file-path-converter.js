@@ -1,17 +1,10 @@
-
-// var exampleWin = "C:\Dan\Arc\Teach\Other\APCSSci\2015\Resoucres\Yr7\"
-// escaped/encoded using encodeURIComponent() below 
-// path = "C%3A%5CDan%5CArc%5CTeach%5COther%5CAPCSSci%5C2015%5CResoucres%5CYr7%5C"
-// var exampleLinux = "/Dan/Arc/Teach/Other/APCSSci/2015/Resoucres/Yr7/" 
-// escaped/encoded using encodeURIComponent() below 
-// path = "%2FDan%2FArc%2FTeach%2FOther%2FAPCSSci%2F2015%2FResoucres%2FYr7%2F"
-// Resources & useful things on the topic: 
-// https://www.the-art-of-web.com/javascript/escape/
-
+// Known Bugs: 
+// Some paths convert incorrectly, presumably due to the decoding reading the path as a character 
 
 // ------------ VARS ----------------
 const fwdSlash = "%2F"; 
 const backSlash = "%5C"; 
+const colon = "%3A";
 
 // Windows --> Linux file path
 function convertPathWindows(path) {
@@ -19,7 +12,7 @@ function convertPathWindows(path) {
     // add mount if needed (otherwise just forward slash on linux)
     if (path.charAt(0) != "C") {
         // EXTERNAL DRIVE - eg linux & windows equivalent: /mnt/d/  and  D:\
-        newPath += fwdSlash + "mnt"; 
+        newPath += fwdSlash + "mnt" + fwdSlash; 
         // change case of drive letter and add
         newPath += path.charAt(0).toLowerCase(); 
     }
@@ -43,18 +36,37 @@ function convertPathWindows(path) {
     return newPath; 
 }
 
-
 // Linux --> Windows file path
 function convertPathLinux(path) {
     let newPath = "";
-    currentChar = "placeholder"
-    // swap the slashes (back/forward) 
-    if (currentChar =="placeholder") {
-        newPath += 'placeholder';
-    }
-    // otherwise keep char same
-    else {
-        newPath += currentChar;
+    let driveLetterIndex = -1; // -1 for internal linux path (no drive in path)
+    let driveLetter = "C"; // default internal drive 
+    // Add drive and prefix
+    if (path.charAt(3) == "m" && path.charAt(4) == "n" && path.charAt(5) == "t")  {
+        // EXTERNAL DRIVE - eg linux & windows equivalent: /mnt/d/  and  D:\
+        driveLetterIndex = 9; 
+        driveLetter = path.charAt(driveLetterIndex).toUpperCase();
+    } // Otherwise INTERNAL DRIVE 
+    // Add drive letter & Colon
+    newPath += driveLetter + colon;
+    // skip for slash
+    let skipCharsCounter = 0;
+    // Add slashes 
+    for(i=driveLetterIndex+1;i<path.length;i++){
+        // swap the slashes (back/forward) 
+        if ((path.charAt(i) != "%" && path.charAt(i+1) != "2" && path.charAt(i+2) != "F") && skipCharsCounter == 0) { 
+            // not slash - keep char same  NB: %2F = /
+            newPath += path.charAt(i); 
+        }
+        else if (skipCharsCounter > 0) {
+            skipCharsCounter -= 1;
+        }
+        else {
+            // add swapped slash 
+            newPath += backSlash; 
+            // set chars to skip for this slash 
+            skipCharsCounter = 2; 
+        }
     }
     return newPath; 
 }
@@ -64,7 +76,6 @@ function outputPath(path) {
     // Update output with converted path
     document.getElementById("textOutput").value = decodeURIComponent(path); 
 }
-
 
 // Convert the file path
 function convertPath(event) { // event passed by event listener click
@@ -78,13 +89,13 @@ function convertPath(event) { // event passed by event listener click
         outputPath(newPath); 
     }
     // Linux --> Windows file path
-    else if (path.charAt(0) == "%" && path.charAt(1) =="5" && path.charAt(2) == "C") {
+    else if (path.charAt(0) == "%" && path.charAt(1) =="2" && path.charAt(2) == "F") {
         newPath = convertPathLinux(path);
         outputPath(newPath); 
     }
     else {
         // notify use to please enter a valid, full file path 
-        // error message 
+        // Temp error message for now: 
         console.log("There has been an error.")
     }
 }
@@ -96,6 +107,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 
+
 /*
 // COPY FUNCTIONALITY 
 
@@ -104,7 +116,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 function copyPath() {
 
 }
-
 
 // check for button click to copy converted path text
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -132,7 +143,7 @@ function returnFilePath() {
 
 
 
-// HELP, IMPROVEMENTS, FURTHER READING: 
+// ------- HELP, IMPROVEMENTS, FURTHER READING  ------
 // https://www.the-art-of-web.com/javascript/escape/
 // https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f 
 // http://www.javascriptkit.com/javatutors/copytoclipboard.shtml 
