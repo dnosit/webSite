@@ -1,2 +1,2 @@
 # webSite
-My personal website for danielnehl.com.au and danielnehl.com 
+Personal website for danielnehl.com.au and danielnehl.com 
