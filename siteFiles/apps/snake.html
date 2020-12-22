@@ -68,7 +68,7 @@ function game() {
     ctx.fillRect(0,0,canvas.width,canvas.height);
     // snake trail
     ctx.fillStyle="maroon";
-    for(var i=0;i<trail.length;i++) {
+    for(let i=0;i<trail.length;i++) {
         // draw each section
         ctx.fillRect(trail[i].x*grid_size,trail[i].y*grid_size,grid_size-2,grid_size-2);
         // check if hit own tail_length 

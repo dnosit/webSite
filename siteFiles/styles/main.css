@@ -143,10 +143,10 @@ iframe {
 /* Snake Game */
 #snake {
     /*Note the image location relative to css file*/
-    background: url('../images/snake.png');
+    background-image: url('../images/snake.png');
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100% 100%;
+    background-position: center bottom;
+    background-size: 100%;
 }   
 
 
