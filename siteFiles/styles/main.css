@@ -151,6 +151,7 @@ nav ul {
 iframe {
     width: 100%;
     height: 12em;
+    min-height: 0em;        /* Required to stop flex overflowing container */
 }
 /* PROJECTS INDIVIDUAL */ 
 /* Snake Game */
