@@ -1,4 +1,9 @@
 /*      UNIVERSAL    */ 
+:root{
+    /* Variables */
+    --experience-text-color: rgb(0, 24, 158);
+}
+
 * {
     font-family: Muli, Arial, Helvetica, sans-serif; 
     border-radius: 2em; 
@@ -162,6 +167,10 @@ iframe {
     background-position: center bottom;
     background-size: 100%;
 }   
+.experience {
+    word-spacing: 3em;
+    color: var(--experience-text-color);
+}
 
 
 /* FOOTER */ 
@@ -193,7 +202,7 @@ div article h4.source-link a {
 
 h4.specific-project,
 h4.specific-project a {
-    color: rgb(0, 68, 255);
+    color: var(--experience-text-color);
     padding-bottom: 0em;
     font-size: 1.4em;
 }
