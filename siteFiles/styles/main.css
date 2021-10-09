@@ -49,6 +49,39 @@ article {
 
 
 
+
+/*       FORMS      */ 
+div.contact-form {
+    display: flex; 
+    flex-direction: wrap; 
+    justify-content: space-evenly; 
+    padding: 0.2em;
+}
+
+div#contact-submit{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+}
+
+input  {
+    width: 60%;
+    text-indent: 0.5em; /* Account for border radius cutting over text too close to edge */
+    justify-content: center;
+}
+
+textarea#message {
+    width: 100%;
+    height: 10em;
+    text-indent: 1em; /* Account for border radius cutting over text too close to edge */
+    line-height: 2em;
+}
+
+
+
+
+
+
 /*      HEADER ELEMENTS       */ 
 header {
     color: rgb(65,105,225); 
